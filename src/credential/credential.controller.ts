@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { CredentialService } from './credential.service';
 import { CreateCredentialDto } from './dto/create-credential.dto';
+import { LoginCredentialDto } from './dto/login-credential.dto';
 import { UpdateCredentialDto } from './dto/update-credential.dto';
 
 @Controller('credential')
@@ -11,24 +12,13 @@ export class CredentialController {
   create(@Body() createCredentialDto: CreateCredentialDto) {
     return this.credentialService.create(createCredentialDto);
   }
-
-  @Get()
-  findAll() {
-    return this.credentialService.findAll();
+  @Post('/login')
+  login(@Body() loginCredentialDto:LoginCredentialDto){
+    return this.credentialService.login(loginCredentialDto)
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.credentialService.findOne(+id);
-  }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCredentialDto: UpdateCredentialDto) {
-    return this.credentialService.update(+id, updateCredentialDto);
+  update(@Param('id',ParseUUIDPipe) id: string, @Body() updateCredentialDto: UpdateCredentialDto) {
+    return this.credentialService.update(id, updateCredentialDto);
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.credentialService.remove(+id);
-  }
+  
 }

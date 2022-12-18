@@ -1,6 +1,6 @@
-import { IsString, Matches, MaxLength } from "class-validator";
+import { IsString,Matches,MaxLength } from "class-validator";
 
-export class CreateCredentialDto {
+export class LoginCredentialDto{
     
     @IsString()
     public readonly username:string;
