@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, ParseUUIDPipe, Put } from '@nestjs/common';
 import { CredentialService } from './credential.service';
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { LoginCredentialDto } from './dto/login-credential.dto';
@@ -6,6 +6,7 @@ import { UpdateCredentialDto } from './dto/update-credential.dto';
 
 @Controller('credential')
 export class CredentialController {
+  
   constructor(private readonly credentialService: CredentialService) {}
 
   @Post()
