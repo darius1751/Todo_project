@@ -7,7 +7,7 @@ import { UpdatePersonDto } from './dto/update-person.dto';
 export class PersonController {
   constructor(private readonly personService: PersonService) {}
 
-  @Post(':/credentialId')
+  @Post(':credentialId')
   create(@Param('credentialId',ParseUUIDPipe) credentialId:string, @Body() createPersonDto: CreatePersonDto) {
     return this.personService.create(credentialId, createPersonDto);
   }
