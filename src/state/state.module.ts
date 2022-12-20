@@ -9,6 +9,7 @@ import { State } from './entities/state.entity';
     TypeOrmModule.forFeature([State])
   ],
   controllers: [StateController],
-  providers: [StateService]
+  providers: [StateService],
+  exports:[StateService]
 })
 export class StateModule {}

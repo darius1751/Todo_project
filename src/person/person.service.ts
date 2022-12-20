@@ -8,7 +8,10 @@ import { Person } from './entities/person.entity';
 @Injectable()
 export class PersonService {
 
-  constructor(@InjectRepository(Person) private personRepository:Repository<Person>){}
+  constructor(
+    @InjectRepository(Person) private personRepository:Repository<Person>,
+    
+  ){}
 
   create(credentialId:string, createPersonDto: CreatePersonDto) {
     try{
@@ -33,9 +36,16 @@ export class PersonService {
       }
     });
   }
-
+  
   async findOne(id: string) {
-    const person:Person = await this.personRepository.findOneBy({id});
+    const person:Person = await this.personRepository.findOne({
+      where:{
+        id
+      },
+      relations:{
+        credential:true
+      }
+    });
     if(person){
       const {credential} = person;
       const {username,id} = credential;
