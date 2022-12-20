@@ -9,6 +9,8 @@ import { State } from './state/entities/state.entity';
 import { StateModule } from './state/state.module';
 import { Type } from './type/entities/type.entity';
 import { TypeModule } from './type/type.module';
+import { PersonModule } from './person/person.module';
+import { Person } from './person/entities/person.entity';
 
 @Module({
   imports: [
@@ -21,11 +23,12 @@ import { TypeModule } from './type/type.module';
       username:'root',
       password: process.env.MYSQL_ROOT_PASSWORD, 
       database:'todo',
-      entities:[Credential, State, Type],
+      entities:[Credential, State, Type, Person],
       synchronize:true
     }),
     StateModule,
-    TypeModule
+    TypeModule,
+    PersonModule
   ],
   controllers: [AppController],
   providers: [AppService],
