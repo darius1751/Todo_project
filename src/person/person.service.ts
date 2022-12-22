@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CredentialService } from 'src/credential/credential.service';
 import { Repository } from 'typeorm';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
@@ -10,10 +11,11 @@ export class PersonService {
 
   constructor(
     @InjectRepository(Person) private personRepository:Repository<Person>,
-    
+    private credentialService:CredentialService
   ){}
 
-  create(credentialId:string, createPersonDto: CreatePersonDto) {
+  async create(credentialId:string, createPersonDto: CreatePersonDto) {
+    await this.credentialService.findOne(credentialId);
     try{
       return this.personRepository.save({
         ...createPersonDto,
@@ -36,7 +38,19 @@ export class PersonService {
       }
     });
   }
-  
+  async findOneByCredentialId(id:string){
+    const person:Person = await this.personRepository.findOne({
+      where:{
+        credential:{
+          id
+        }        
+      }
+    })
+    if(person)
+      return person;
+    else
+      throw new BadRequestException(`Not exist user with credential id: ${id}`);
+  }
   async findOne(id: string) {
     const person:Person = await this.personRepository.findOne({
       where:{

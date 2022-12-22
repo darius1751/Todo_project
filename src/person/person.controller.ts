@@ -1,15 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe, HttpCode } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 
 @Controller('person')
 export class PersonController {
+  
   constructor(private readonly personService: PersonService) {}
 
   @Post(':credentialId')
   create(@Param('credentialId',ParseUUIDPipe) credentialId:string, @Body() createPersonDto: CreatePersonDto) {
     return this.personService.create(credentialId, createPersonDto);
+  }
+
+  @Post('login/:credentialId')
+  @HttpCode(200)
+  findOneByCredentialId(@Param('credentialId', ParseUUIDPipe) id:string){
+    return this.personService.findOneByCredentialId(id);
   }
 
   @Get()

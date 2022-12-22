@@ -3,10 +3,12 @@ import { PersonService } from './person.service';
 import { PersonController } from './person.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Person } from './entities/person.entity';
+import { CredentialModule } from 'src/credential/credential.module';
 
 @Module({
   imports:[
-    TypeOrmModule.forFeature([Person])
+    TypeOrmModule.forFeature([Person]),
+    CredentialModule
   ],
   controllers: [PersonController],
   providers: [PersonService],
