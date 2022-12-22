@@ -12,5 +12,10 @@ export class State {
         unique:true
     })
     public readonly name:string;
+
+    @Column({
+        unique:true        
+    })
+    public readonly order:number;
     
 }
