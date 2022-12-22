@@ -19,7 +19,11 @@ export class StateService {
   }
 
   findAll() {
-    return this.stateRepository.find();
+    return this.stateRepository.find({
+      order:{
+        order:'ASC'
+      }
+    });
   }
 
   async findOne(id: string) {
