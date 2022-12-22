@@ -8,6 +8,9 @@ export class Person {
     })
     public readonly id:string;
 
+    @Column({
+        nullable:false
+    })
     public readonly name:string;
 
     @OneToOne(() => Credential,{
