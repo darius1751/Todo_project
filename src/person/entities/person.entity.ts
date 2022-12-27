@@ -2,7 +2,8 @@ import { Credential } from "src/credential/entities/credential.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity('person')
-export class Person { 
+export class Person {
+     
     @PrimaryColumn({
         generated:'uuid'
     })

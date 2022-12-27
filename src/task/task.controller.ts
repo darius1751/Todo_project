@@ -13,7 +13,7 @@ export class TaskController {
     return this.taskService.create(createTaskDto);
   }
   @Get('person/:id')
-  findByPersonId(@Param('id',ParseUUIDPipe) id:string){
+   findByPersonId(@Param('id',ParseUUIDPipe) id:string){
     return this.taskService.findByPersonId(id);
   }
   
