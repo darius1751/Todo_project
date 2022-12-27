@@ -20,7 +20,7 @@ export class CredentialService {
         })
 
     }catch(exception){
-      Logger.error(exception, CredentialService.name)
+      Logger.error(exception, CredentialService.name);
     }
     
   }

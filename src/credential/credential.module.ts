@@ -10,8 +10,6 @@ import { Credential } from './entities/credential.entity';
   ],
   controllers: [CredentialController],
   providers: [CredentialService],
-  exports:[
-    CredentialService
-  ]
+  exports:[CredentialService]
 })
 export class CredentialModule {}

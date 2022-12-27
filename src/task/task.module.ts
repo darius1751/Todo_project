@@ -15,6 +15,7 @@ import { StateModule } from 'src/state/state.module';
     StateModule
   ],
   controllers: [TaskController],
-  providers: [TaskService]
+  providers: [TaskService],
+  exports:[TaskService]
 })
 export class TaskModule {}

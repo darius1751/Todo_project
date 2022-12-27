@@ -13,6 +13,7 @@ import { PersonModule } from './person/person.module';
 import { Person } from './person/entities/person.entity';
 import { Task } from './task/entities/task.entity';
 import { TaskModule } from './task/task.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { TaskModule } from './task/task.module';
     StateModule,
     TaskModule,
     TypeModule,
-    PersonModule
+    PersonModule,
+    SeedModule
   ],
   controllers: [AppController],
   providers: [AppService],
